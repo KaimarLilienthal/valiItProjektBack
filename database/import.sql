@@ -18,5 +18,5 @@ INSERT INTO public.district (id, name) VALUES (DEFAULT, 'Põhja-Tallinn');
 
 INSERT INTO public.address (id, street, longtitude, latitude) VALUES (DEFAULT, 'Tähe 17', null, null);
 
-INSERT INTO public.studio (id, owner_user_id, name, url, hour_price, status, image_id, aadress_id, district_id) VALUES (DEFAULT, 2, 'Tulbi', 'www.tulbi.eu', 0, 'A', null, 1, 6);
+INSERT INTO public.studio (id, owner_user_id, name, url, hour_price, status, image_id, address_id, district_id) VALUES (DEFAULT, 2, 'Tulbi', 'www.tulbi.eu', 0, 'A', null, 1, 6);
 

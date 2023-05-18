@@ -2,11 +2,11 @@ package tallinnafotostuudiod.ee.valiItProjektBack.domain.image;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "image")
 public class Image {

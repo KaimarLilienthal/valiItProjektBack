@@ -5,10 +5,10 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import tallinnafotostuudiod.ee.valiItProjektBack.domain.studio.address.Address;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.studio.district.District;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.image.Image;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.user.User;
-import tallinnafotostuudiod.ee.valiItProjektBack.domain.studio.address.Address;
 
 @Getter
 @Setter
@@ -47,14 +47,15 @@ public class Studio {
     @JoinColumn(name = "image_id")
     private Image image;
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "aadress_id", nullable = false)
-    private Address aadress;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "district_id", nullable = false)
     private District district;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "address_id", nullable = false)
+    private Address address;
 
 }

@@ -95,7 +95,7 @@ CREATE TABLE studio (
     hour_price int  NOT NULL,
     status char(1)  NOT NULL,
     image_id int  NULL,
-    aadress_id int  NOT NULL,
+    address_id int  NOT NULL,
     district_id int  NOT NULL,
     CONSTRAINT studio_pk PRIMARY KEY (id)
 );
@@ -169,9 +169,9 @@ ALTER TABLE availability ADD CONSTRAINT schedule_studio
     INITIALLY IMMEDIATE
 ;
 
--- Reference: studio_aadress (table: studio)
-ALTER TABLE studio ADD CONSTRAINT studio_aadress
-    FOREIGN KEY (aadress_id)
+-- Reference: studio_address (table: studio)
+ALTER TABLE studio ADD CONSTRAINT studio_address
+    FOREIGN KEY (address_id)
     REFERENCES address (id)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
