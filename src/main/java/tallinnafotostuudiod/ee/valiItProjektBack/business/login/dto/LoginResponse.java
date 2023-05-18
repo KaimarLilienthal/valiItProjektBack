@@ -1,4 +1,4 @@
-package tallinnafotostuudiod.ee.valiItProjektBack.business.login;
+package tallinnafotostuudiod.ee.valiItProjektBack.business.login.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
