@@ -9,5 +9,7 @@ public class ImageService {
     @Resource
     private ImageRepository imageRepository;
 
-
+    public void addImage(Image image) {
+        imageRepository.save(image);
+    }
 }

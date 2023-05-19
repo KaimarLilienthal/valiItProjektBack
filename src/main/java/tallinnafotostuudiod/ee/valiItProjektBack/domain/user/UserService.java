@@ -18,4 +18,10 @@ public class UserService {
         return userOptional.get();
 
     }
+
+
+    public User findActiveStudioUserBy(Integer ownerUserId) {
+        User user = userRepository.findById(ownerUserId).get();
+        return user;
+    }
 }

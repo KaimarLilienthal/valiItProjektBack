@@ -1,5 +1,6 @@
 package tallinnafotostuudiod.ee.valiItProjektBack.util;
 
+import tallinnafotostuudiod.ee.valiItProjektBack.domain.image.Image;
 import tallinnafotostuudiod.ee.valiItProjektBack.util.ImageUtil;
 
 import java.nio.charset.StandardCharsets;
@@ -16,7 +17,7 @@ public class ImageUtil {
         return imageData;
     }
 
-    public static boolean imageIsPresent(ImageUtil image) {
+    public static boolean imageIsPresent(Image image) {
         return image != null;
     }
 }

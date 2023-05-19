@@ -6,15 +6,15 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.annotation.Resource;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioDto;
+import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioGeneralInfo;
 import tallinnafotostuudiod.ee.valiItProjektBack.infrastructure.error.ApiError;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/studios")
 public class StudiosController {
     @Resource
     private StudiosService studiosService;
@@ -30,4 +30,10 @@ public class StudiosController {
         List<StudioDto> userStudios = studiosService.findUserStudios(userId);
         return userStudios;
     }
+    @PostMapping("/general")
+    public void addStudio(@RequestBody StudioGeneralInfo studioGeneralInfo){
+        studiosService.addStudio(studioGeneralInfo);
+
+    }
+
 }

@@ -19,4 +19,7 @@ public class Image {
     @Column(name = "data", nullable = false)
     private byte[] data;
 
+    public Image(byte[] data) {
+        this.data = data;
+    }
 }

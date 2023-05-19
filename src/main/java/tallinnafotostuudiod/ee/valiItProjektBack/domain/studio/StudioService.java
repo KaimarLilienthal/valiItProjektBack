@@ -17,4 +17,7 @@ public class StudioService {
     }
 
 
+    public void addStudio(Studio studio) {
+        studioRepository.save(studio);
+    }
 }
