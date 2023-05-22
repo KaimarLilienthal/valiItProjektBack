@@ -19,7 +19,7 @@ import tallinnafotostuudiod.ee.valiItProjektBack.domain.user.UserService;
 import tallinnafotostuudiod.ee.valiItProjektBack.util.ImageUtil;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class StudiosService {

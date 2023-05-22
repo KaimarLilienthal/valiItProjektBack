@@ -2,10 +2,9 @@ package tallinnafotostuudiod.ee.valiItProjektBack.business.login;
 
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import tallinnafotostuudiod.ee.valiItProjektBack.business.login.dto.LoginResponse;
+import tallinnafotostuudiod.ee.valiItProjektBack.business.login.dto.NewUser;
 
 @RestController
 public class LoginController {
@@ -18,4 +17,6 @@ public class LoginController {
         LoginResponse loginResponse = loginService.login(username, password);
         return loginResponse;
     }
+
+
 }
