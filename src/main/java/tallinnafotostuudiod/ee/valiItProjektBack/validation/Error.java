@@ -7,7 +7,7 @@ public enum Error {
     INCORRECT_CREDENTIALS("Vale kasutajanimi või parool", 111),
     NO_LOCATION_FOUND("Ei leitud ühtegi pangaautomaati", 222),
     USERNAME_UNAVAILABLE("Sellise nimega kasutaja on juba süsteemis olemas", 444),
-    LOCATION_UNAVAILABLE("Sellise nimega pangaautomaadi asukoht on juba süsteemis olemas", 333);
+    URL_UNAVAILABLE("Sellise web aadressiga stuudio on juba süsteemis olemas", 555);
 
     private final String message;
     private final int errorCode;

@@ -2,6 +2,7 @@ package tallinnafotostuudiod.ee.valiItProjektBack.domain.studio;
 
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
+import tallinnafotostuudiod.ee.valiItProjektBack.validation.ValidationService;
 
 import java.util.List;
 
@@ -19,5 +20,10 @@ public class StudioService {
 
     public void addStudio(Studio studio) {
         studioRepository.save(studio);
+    }
+
+    public void findExistsUrlBy(String url) {
+        boolean urlExists = studioRepository.existsBy(url);
+        ValidationService.validateUrlIsAvailable(urlExists);
     }
 }

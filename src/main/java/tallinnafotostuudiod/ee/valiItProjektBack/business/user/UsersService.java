@@ -2,7 +2,7 @@ package tallinnafotostuudiod.ee.valiItProjektBack.business.user;
 
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
-import tallinnafotostuudiod.ee.valiItProjektBack.business.login.dto.NewUser;
+import tallinnafotostuudiod.ee.valiItProjektBack.business.user.dto.NewUser;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.user.User;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.user.UserMapper;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.user.UserService;

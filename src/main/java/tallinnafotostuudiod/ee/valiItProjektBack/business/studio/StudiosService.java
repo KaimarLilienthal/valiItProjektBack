@@ -54,7 +54,7 @@ public class StudiosService {
         //  ME KUNAGI EI MÄPI FOREING key väärtusi ENTITITELE,
         //  vaid kas otsime nende id'de abil üllesse vastate tabelite objektid/read
         //  või siis tekitame uued objektid/read
-
+        studioService.findExistsUrlBy(studioGeneralInfo.getWebsite());
 
         //  mapime 'studio' objektile/reale nii palju andmeid kui saame
         Studio studio = studioMapper.toStudio(studioGeneralInfo);

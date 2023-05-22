@@ -2,7 +2,7 @@ package tallinnafotostuudiod.ee.valiItProjektBack.domain.user;
 
 import org.mapstruct.*;
 import tallinnafotostuudiod.ee.valiItProjektBack.business.login.dto.LoginResponse;
-import tallinnafotostuudiod.ee.valiItProjektBack.business.login.dto.NewUser;
+import tallinnafotostuudiod.ee.valiItProjektBack.business.user.dto.NewUser;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface UserMapper {

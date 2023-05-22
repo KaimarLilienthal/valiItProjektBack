@@ -22,4 +22,11 @@ public class ValidationService {
         }
 
     }
+
+    public static void validateUrlIsAvailable(boolean urlExists){
+        if (urlExists) {
+            throw new BusinessException(Error.URL_UNAVAILABLE.getMessage(), Error.URL_UNAVAILABLE.getErrorCode());
+        }
+    }
+
 }
