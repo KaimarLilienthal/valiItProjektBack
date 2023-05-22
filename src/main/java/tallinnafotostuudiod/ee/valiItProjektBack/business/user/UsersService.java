@@ -22,7 +22,9 @@ public class UsersService {
 
 
     public void addUser(NewUser newUser) {
+
         // userService alla validatsioon, vaatad andmebaasist kas kasutajanimi on vaba, kui mitte siis visata viga (ValidatsionService)
+        userService.findExistsUserBy(newUser.getUsername());
 
         //  ME KUNAGI EI MÄPI FOREING key väärtusi ENTITITELE,
         //  vaid kas otsime nende id'de abil üllesse vastate tabelite objektid/read

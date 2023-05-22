@@ -9,8 +9,10 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query("select u from User u where u.username = ?1 and u.password = ?2 and u.status = ?3")
     Optional<User> findUserBy(String username, String password, String status);
 
-    @Query("select (count(u) > 0) from User u where u.email = ?1")
-    boolean existsByEmail(String email);
+
+
+    @Query("select (count(u) > 0) from User u where u.username = ?1")
+    boolean existsBy(String username);
 
 
 

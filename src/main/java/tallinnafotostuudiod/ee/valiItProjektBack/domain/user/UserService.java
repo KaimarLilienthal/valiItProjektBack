@@ -28,4 +28,8 @@ public class UserService {
     public void addUser(User user) {
         userRepository.save(user);
     }
+    public void findExistsUserBy(String username) {
+        boolean exists = userRepository.existsBy(username);
+        ValidationService.validateUserIsAvailable(exists);
+    }
 }
