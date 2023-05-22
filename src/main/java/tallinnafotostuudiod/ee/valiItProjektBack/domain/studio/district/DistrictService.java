@@ -3,6 +3,8 @@ package tallinnafotostuudiod.ee.valiItProjektBack.domain.studio.district;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class DistrictService {
 
@@ -14,4 +16,8 @@ public class DistrictService {
         return district;
     }
 
+    public List<District> getAllDistricts() {
+        List<District> districts = districtRepository.findAll();
+        return districts;
+    }
 }
