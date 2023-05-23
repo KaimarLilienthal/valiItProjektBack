@@ -27,6 +27,16 @@ public interface StudioMapper {
     @Mapping(constant = "0", target = "hourPrice")
     Studio toStudio(StudioGeneralInfo studioGeneralInfo);
 
+    @Mapping(source = "address.street", target = "address")
+    @Mapping(source = "district.id", target = "districtId")
+    @Mapping(source = "name", target = "studioName")
+    @Mapping(source = "address.latitude", target = "latitude")
+    @Mapping(source = "address.longtitude", target = "longtitude")
+    @Mapping(source = "image", target = "imageData", qualifiedByName = "imageToImageData")
+    @Mapping(source = "ownerUser.id", target = "ownerUserId")
+    @Mapping(source = "url", target = "website")
+    StudioGeneralInfo toUserStudioDto(Studio studio);
+
     @Named("imageToImageData")
     static String imageToImageData(Image image) {
         if (image == null) {

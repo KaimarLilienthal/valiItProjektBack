@@ -22,7 +22,7 @@ public class StudiosController {
 
     @GetMapping("/user-studios")
     @Operation(summary = "Kuvab listi kasutaja stuudiotest",
-            description = "Tagastab info koos studioId ja studioName'ga ning imageId'ga")
+            description = "Tagastab info koos studioId ja studioName'ga ning imageId'ga jne.MUUDA ÕIGEKS!!!")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "404", description = "Ei leitud ühtegi Stuudiot", content = @Content(schema = @Schema(implementation = ApiError.class)))})
@@ -36,4 +36,11 @@ public class StudiosController {
 
     }
 
+    @GetMapping("/user-studio")
+    @Operation(summary = "Kuvab muutmiseks kasutaja stuudio",
+            description = "Tagastab info koos ... MUUDA ÕIGEKS")
+    public StudioGeneralInfo editUserStudio(@RequestParam Integer studioId){
+        StudioGeneralInfo userStudio = studiosService.editUserStudio(studioId);
+        return userStudio;
+    }
 }

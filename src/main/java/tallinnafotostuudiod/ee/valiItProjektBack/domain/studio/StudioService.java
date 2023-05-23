@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import tallinnafotostuudiod.ee.valiItProjektBack.validation.ValidationService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudioService {
@@ -25,5 +26,10 @@ public class StudioService {
     public void findExistsUrlBy(String url) {
         boolean urlExists = studioRepository.existsBy(url);
         ValidationService.validateUrlIsAvailable(urlExists);
+    }
+
+    public Optional<Studio> getUserActiveStudio(Integer studioId) {
+        Optional<Studio> studio = studioRepository.findById(studioId);
+        return studio;
     }
 }

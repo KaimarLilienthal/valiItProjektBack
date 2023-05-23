@@ -19,6 +19,7 @@ import tallinnafotostuudiod.ee.valiItProjektBack.domain.user.UserService;
 import tallinnafotostuudiod.ee.valiItProjektBack.util.ImageUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -98,5 +99,11 @@ public class StudiosService {
 
         // TODO: 5/19/2023 toimub 'studio' objekt/rea salvestamine (studioService->studioRepository save() abil)
 
+    }
+
+    public StudioGeneralInfo editUserStudio(Integer studioId) {
+        Optional<Studio> studio = studioService.getUserActiveStudio(studioId);
+        StudioGeneralInfo studioDto = studioMapper.toUserStudioDto(studio.get());
+        return studioDto;
     }
 }
