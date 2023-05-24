@@ -8,7 +8,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioDto;
+import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioDtoBasic;
 import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioGeneralInfo;
+
 import tallinnafotostuudiod.ee.valiItProjektBack.infrastructure.error.ApiError;
 
 import java.util.List;
@@ -18,7 +20,6 @@ import java.util.List;
 public class StudiosController {
     @Resource
     private StudiosService studiosService;
-
 
     @GetMapping("/user-studios")
     @Operation(summary = "Kuvab listi kasutaja stuudiotest",
@@ -37,10 +38,36 @@ public class StudiosController {
     }
 
     @GetMapping("/user-studio")
-    @Operation(summary = "Kuvab muutmiseks kasutaja stuudio",
+    @Operation(summary = "Kuvab kasutaja stuudio",
             description = "Tagastab info koos ... MUUDA ÕIGEKS")
-    public StudioGeneralInfo editUserStudio(@RequestParam Integer studioId){
-        StudioGeneralInfo userStudio = studiosService.editUserStudio(studioId);
+    public StudioGeneralInfo findUserStudio(@RequestParam Integer studioId){
+        StudioGeneralInfo userStudio = studiosService.findUserStudio(studioId);
         return userStudio;
     }
+    @DeleteMapping("/my-studio-delete")
+    @Operation(summary = "Kustutab kasutaja stuudio")
+    public void deleteUserStudio(@RequestParam Integer studioId){
+        studiosService.deleteUserStudio(studioId);
+    }
+
+
+    @GetMapping("/all-studios")
+    @Operation(summary = "Kuvab kõik aktiivsed stuudiod valitud piirkonnas")
+    public List<StudioDtoBasic> findAllAreaStudios(Integer districtId){
+        List<StudioDtoBasic> allAreaStudios = studiosService.findAllAreaStudios(districtId);
+        return allAreaStudios;
+
+
+    }
+
+
+    @PutMapping("/change-user-studio")
+    @Operation(summary = "Kuvab muutmiseks kasutaja stuudio",
+            description = "Tagastab info koos ... MUUDA ÕIGEKS")
+    public void changeUserStudio(@RequestParam Integer studioId, @RequestBody StudioGeneralInfo studioGeneralInfo){
+        studiosService.changeUserStudio(studioId, studioGeneralInfo);
+    }
+
+
+
 }

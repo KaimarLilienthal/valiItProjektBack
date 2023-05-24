@@ -2,6 +2,7 @@ package tallinnafotostuudiod.ee.valiItProjektBack.domain.studio;
 
 import org.mapstruct.*;
 import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioDto;
+import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioDtoBasic;
 import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioGeneralInfo;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.image.Image;
 import tallinnafotostuudiod.ee.valiItProjektBack.util.ImageUtil;
@@ -20,7 +21,7 @@ public interface StudioMapper {
     List<StudioDto> toStudioDtos(List<Studio> studios);
 
     @Mapping(ignore = true, target = "address")
-    @Mapping(source = "imageData", target = "image", qualifiedByName = "imageDataToImage" )
+    @Mapping(source = "imageData", target = "image", qualifiedByName = "imageDataToImage")
     @Mapping(source = "website", target = "url")
     @Mapping(source = "studioName", target = "name")
     @Mapping(constant = "A", target = "status")
@@ -37,6 +38,22 @@ public interface StudioMapper {
     @Mapping(source = "url", target = "website")
     StudioGeneralInfo toUserStudioDto(Studio studio);
 
+    @Mapping(source = "studioName", target = "name")
+    @Mapping(source = "imageData", target = "image", qualifiedByName = "imageDataToImage")
+    @Mapping(source = "website", target = "url")
+    @Mapping(source = "address", target = "address.street")
+    @Mapping(source = "longtitude", target = "address.longtitude")
+    @Mapping(source = "latitude", target = "address.latitude")
+    @Mapping(constant = "0", target = "hourPrice")
+    @Mapping(constant = "A", target = "status")
+    Studio partialUpdate(StudioGeneralInfo studioGeneralInfo, @MappingTarget Studio studio);
+
+    @Mapping(source = "image", target = "imageData", qualifiedByName = "imageToImageData")
+    StudioDtoBasic toAllStudioDto(Studio studio);
+
+    List<StudioDtoBasic> toAllStudioDtos(List<Studio> studios);
+
+
     @Named("imageToImageData")
     static String imageToImageData(Image image) {
         if (image == null) {
@@ -44,6 +61,7 @@ public interface StudioMapper {
         }
         return ImageUtil.byteArrayToBase64ImageData(image.getData());
     }
+
     @Named("imageDataToImage")
     static Image imageDataToImage(String imageData) {
         if (imageData.isEmpty()) {
@@ -51,6 +69,11 @@ public interface StudioMapper {
         }
         return new Image(ImageUtil.base64ImageDataToByteArray(imageData));
     }
+
+
+
+
+
 
 
 }

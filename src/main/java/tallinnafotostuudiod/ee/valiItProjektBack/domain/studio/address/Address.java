@@ -23,10 +23,11 @@ public class Address {
     @Column(name = "street", nullable = false)
     private String street;
 
-    @Column(name = "longtitude", precision = 2, scale = 6)
+
+    @Column(name = "longtitude", precision = 6, scale = 4)
     private BigDecimal longtitude;
 
-    @Column(name = "latitude", precision = 2, scale = 6)
+    @Column(name = "latitude", precision = 6, scale = 4)
     private BigDecimal latitude;
 
 }

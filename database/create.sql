@@ -6,8 +6,8 @@
 CREATE TABLE address (
     id serial  NOT NULL,
     street varchar(255)  NOT NULL,
-    longtitude decimal(2,6)  NULL,
-    latitude decimal(2,6)  NULL,
+    longtitude decimal(6,4)  NULL,
+    latitude decimal(6,4)  NULL,
     CONSTRAINT address_pk PRIMARY KEY (id)
 );
 

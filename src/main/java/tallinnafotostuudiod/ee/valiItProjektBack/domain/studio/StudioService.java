@@ -32,4 +32,15 @@ public class StudioService {
         Optional<Studio> studio = studioRepository.findById(studioId);
         return studio;
     }
+
+    public void deleteUserActiveStudio(Integer studioId) {
+        studioRepository.deleteById(studioId);
+    }
+
+
+    public List<Studio> findAllAreaStudios(Integer districtId) {
+        List<Studio> studio = studioRepository.findByDistrictId(districtId);
+        return studio;
+    }
 }
+

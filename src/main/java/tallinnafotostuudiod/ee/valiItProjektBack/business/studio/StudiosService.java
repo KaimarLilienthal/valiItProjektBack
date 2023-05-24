@@ -2,7 +2,9 @@ package tallinnafotostuudiod.ee.valiItProjektBack.business.studio;
 
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioDto;
+import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioDtoBasic;
 import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioGeneralInfo;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.image.Image;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.image.ImageService;
@@ -42,7 +44,6 @@ public class StudiosService {
     private StudioMapper studioMapper;
     @Resource
     private AddressMapper addressMapper;
-
 
 
     public List<StudioDto> findUserStudios(Integer userId) {
@@ -101,9 +102,48 @@ public class StudiosService {
 
     }
 
-    public StudioGeneralInfo editUserStudio(Integer studioId) {
+    @Transactional
+    public void changeUserStudio(Integer studioId, StudioGeneralInfo studioGeneralInfo) {
+        Optional<Studio> studios = studioService.getUserActiveStudio(studioId);
+        Studio studio = studios.get();
+        studioMapper.partialUpdate(studioGeneralInfo, studio);
+
+        Image image = studio.getImage();
+
+        //  seda 'image' objekti/rida pole veel andmebaasi salvestatud
+        // TODO: Peame kontrollima, kas studio küljes on pilt või mitte (kas jäi null või mitte),
+        if (ImageUtil.imageIsPresent(image)) {
+
+            //  kui jah siis peame selle ära salvestama
+            // TODO: imageService->ImageRepository save(image)
+            imageService.addImage(image);
+        }
+
+        User user = userService.findActiveStudioUserBy(studioGeneralInfo.getOwnerUserId());
+        studio.setOwnerUser(user);
+
+        District district = districtService.findDistrictBy(studioGeneralInfo.getDistrictId());
+        studio.setDistrict(district);
+
+        studioService.addStudio(studio);
+    }
+
+    public StudioGeneralInfo findUserStudio(Integer studioId) {
         Optional<Studio> studio = studioService.getUserActiveStudio(studioId);
         StudioGeneralInfo studioDto = studioMapper.toUserStudioDto(studio.get());
         return studioDto;
+    }
+
+
+    public void deleteUserStudio(Integer studioId) {
+        studioService.deleteUserActiveStudio(studioId);
+    }
+
+
+    public List<StudioDtoBasic> findAllAreaStudios(Integer districtId) {
+        List<Studio> studios = studioService.findAllAreaStudios(districtId);
+        List<StudioDtoBasic> allStudioDtos = studioMapper.toAllStudioDtos(studios);
+        return allStudioDtos;
+
     }
 }
