@@ -38,7 +38,6 @@ public interface StudioMapper {
     @Mapping(source = "url", target = "website")
     StudioGeneralInfo toUserStudioDto(Studio studio);
 
-    @Mapping(source = "studioName", target = "name")
     @Mapping(source = "imageData", target = "image", qualifiedByName = "imageDataToImage")
     @Mapping(source = "website", target = "url")
     @Mapping(source = "address", target = "address.street")
@@ -49,6 +48,7 @@ public interface StudioMapper {
     Studio partialUpdate(StudioGeneralInfo studioGeneralInfo, @MappingTarget Studio studio);
 
     @Mapping(source = "image", target = "imageData", qualifiedByName = "imageToImageData")
+    @Mapping(source = "name", target = "studioName")
     StudioDtoBasic toAllStudioDto(Studio studio);
 
     List<StudioDtoBasic> toAllStudioDtos(List<Studio> studios);

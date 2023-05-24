@@ -16,7 +16,7 @@ import tallinnafotostuudiod.ee.valiItProjektBack.infrastructure.error.ApiError;
 import java.util.List;
 
 @RestController
-@RequestMapping("/studios")
+@RequestMapping("/studio")
 public class StudiosController {
     @Resource
     private StudiosService studiosService;
@@ -31,7 +31,7 @@ public class StudiosController {
         List<StudioDto> userStudios = studiosService.findUserStudios(userId);
         return userStudios;
     }
-    @PostMapping("/general")
+    @PostMapping
     public void addStudio(@RequestBody StudioGeneralInfo studioGeneralInfo){
         studiosService.addStudio(studioGeneralInfo);
 
@@ -44,15 +44,15 @@ public class StudiosController {
         StudioGeneralInfo userStudio = studiosService.findUserStudio(studioId);
         return userStudio;
     }
-    @DeleteMapping("/my-studio-delete")
+    @DeleteMapping
     @Operation(summary = "Kustutab kasutaja stuudio")
     public void deleteUserStudio(@RequestParam Integer studioId){
         studiosService.deleteUserStudio(studioId);
     }
 
 
-    @GetMapping("/all-studios")
-    @Operation(summary = "Kuvab kõik aktiivsed stuudiod valitud piirkonnas")
+    @GetMapping("/all-selected-studios")
+    @Operation(summary = "Kuvab kõik stuudiod valitud piirkonnas")
     public List<StudioDtoBasic> findAllAreaStudios(Integer districtId){
         List<StudioDtoBasic> allAreaStudios = studiosService.findAllAreaStudios(districtId);
         return allAreaStudios;
@@ -61,7 +61,7 @@ public class StudiosController {
     }
 
 
-    @PutMapping("/change-user-studio")
+    @PutMapping
     @Operation(summary = "Kuvab muutmiseks kasutaja stuudio",
             description = "Tagastab info koos ... MUUDA ÕIGEKS")
     public void changeUserStudio(@RequestParam Integer studioId, @RequestBody StudioGeneralInfo studioGeneralInfo){
