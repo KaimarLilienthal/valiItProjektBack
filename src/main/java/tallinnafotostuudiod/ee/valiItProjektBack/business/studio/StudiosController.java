@@ -11,6 +11,7 @@ import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioDto;
 import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioDtoBasic;
 import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioGeneralInfo;
 
+import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioPriceDto;
 import tallinnafotostuudiod.ee.valiItProjektBack.infrastructure.error.ApiError;
 
 import java.util.List;
@@ -63,12 +64,18 @@ public class StudiosController {
 
 
     @PutMapping
-    @Operation(summary = "Kuvab muutmiseks kasutaja stuudio",
+    @Operation(summary = "Muudab kasutaja stuudio",
             description = "Tagastab info koos ... MUUDA ÕIGEKS")
     public void changeUserStudio(@RequestParam Integer studioId, @RequestBody StudioGeneralInfo studioGeneralInfo){
         studiosService.changeUserStudio(studioId, studioGeneralInfo);
     }
 
+@GetMapping("/price")
+@Operation(summary = "Kuvab stuudio tunnihinna")
+    public StudioPriceDto findUserStudioHourPrice(@RequestParam Integer studioId){
+    StudioPriceDto userStudioHourPrice = studiosService.findUserStudioHourPrice(studioId);
+    return userStudioHourPrice;
+}
 
 
 

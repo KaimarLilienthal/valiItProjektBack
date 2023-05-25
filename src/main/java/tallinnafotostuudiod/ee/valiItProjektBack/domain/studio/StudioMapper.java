@@ -4,6 +4,7 @@ import org.mapstruct.*;
 import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioDto;
 import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioDtoBasic;
 import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioGeneralInfo;
+import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioPriceDto;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.image.Image;
 import tallinnafotostuudiod.ee.valiItProjektBack.util.ImageUtil;
 
@@ -73,7 +74,8 @@ public interface StudioMapper {
 
 
 
+    StudioPriceDto toStudioPriceDto(Studio studio);
 
-
-
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    Studio partialUpdate(StudioPriceDto studioPriceDto, @MappingTarget Studio studio);
 }

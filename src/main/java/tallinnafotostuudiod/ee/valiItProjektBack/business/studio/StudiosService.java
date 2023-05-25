@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioDto;
 import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioDtoBasic;
 import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioGeneralInfo;
+import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioPriceDto;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.image.Image;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.image.ImageService;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.studio.Studio;
@@ -148,4 +149,9 @@ public class StudiosService {
     }
 
 
+    public StudioPriceDto findUserStudioHourPrice(Integer studioId) {
+        Optional<Studio> userStudioHourPrice = studioService.findUserStudioHourPrice(studioId);
+        StudioPriceDto studioPriceDto = studioMapper.toStudioPriceDto(userStudioHourPrice.get());
+        return studioPriceDto;
+    }
 }

@@ -42,5 +42,11 @@ public class StudioService {
         List<Studio> studio = studioRepository.findByDistrictId(districtId);
         return studio;
     }
+
+
+    public Optional<Studio> findUserStudioHourPrice(Integer studioId) {
+        Optional<Studio> hourPrice = studioRepository.findById(studioId);
+        return hourPrice;
+    }
 }
 
