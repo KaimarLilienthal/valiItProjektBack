@@ -48,11 +48,14 @@ public interface StudioMapper {
     @Mapping(constant = "A", target = "status")
     Studio partialUpdate(StudioGeneralInfo studioGeneralInfo, @MappingTarget Studio studio);
 
+    Studio partialUpdate(StudioPriceDto studioPriceDto, @MappingTarget Studio studio);
+
     @Mapping(source = "image", target = "imageData", qualifiedByName = "imageToImageData")
     @Mapping(source = "name", target = "studioName")
     StudioDtoBasic toAllStudioDto(Studio studio);
 
     List<StudioDtoBasic> toAllStudioDtos(List<Studio> studios);
+    StudioPriceDto toStudioPriceDto(Studio studio);
 
 
     @Named("imageToImageData")
@@ -70,12 +73,10 @@ public interface StudioMapper {
         }
         return new Image(ImageUtil.base64ImageDataToByteArray(imageData));
     }
-
-
-
-
-    StudioPriceDto toStudioPriceDto(Studio studio);
-
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    Studio partialUpdate(StudioPriceDto studioPriceDto, @MappingTarget Studio studio);
 }
+
+
+
+
+
+

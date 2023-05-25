@@ -103,11 +103,19 @@ public class StudiosService {
 
     }
 
+    public void editUserStudioHourPrice(Integer studioId, StudioPriceDto studioPriceDto) {
+        Optional<Studio> studios = studioService.getUserActiveStudio(studioId);
+        Studio studio = studios.get();
+        studioMapper.partialUpdate(studioPriceDto, studio);
+        studioService.addStudio(studio);
+    }
+
     @Transactional
     public void changeUserStudio(Integer studioId, StudioGeneralInfo studioGeneralInfo) {
         Optional<Studio> studios = studioService.getUserActiveStudio(studioId);
         Studio studio = studios.get();
         studioMapper.partialUpdate(studioGeneralInfo, studio);
+
 
         Image image = studio.getImage();
 
@@ -154,4 +162,7 @@ public class StudiosService {
         StudioPriceDto studioPriceDto = studioMapper.toStudioPriceDto(userStudioHourPrice.get());
         return studioPriceDto;
     }
+
+
+
 }

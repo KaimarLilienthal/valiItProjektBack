@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioDto;
 import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioDtoBasic;
 import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioGeneralInfo;
-
 import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioPriceDto;
 import tallinnafotostuudiod.ee.valiItProjektBack.infrastructure.error.ApiError;
 
@@ -28,12 +27,13 @@ public class StudiosController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "404", description = "Ei leitud ühtegi Stuudiot", content = @Content(schema = @Schema(implementation = ApiError.class)))})
-    public List<StudioDto> findUserStudios(@RequestParam Integer userId){
+    public List<StudioDto> findUserStudios(@RequestParam Integer userId) {
         List<StudioDto> userStudios = studiosService.findUserStudios(userId);
         return userStudios;
     }
+
     @PostMapping
-    public void addStudio(@RequestBody StudioGeneralInfo studioGeneralInfo){
+    public void addStudio(@RequestBody StudioGeneralInfo studioGeneralInfo) {
         studiosService.addStudio(studioGeneralInfo);
 
     }
@@ -41,42 +41,45 @@ public class StudiosController {
     @GetMapping("/user-studio")
     @Operation(summary = "Kuvab kasutaja stuudio",
             description = "Tagastab info koos ... MUUDA ÕIGEKS")
-    public StudioGeneralInfo findUserStudio(@RequestParam Integer studioId){
+    public StudioGeneralInfo findUserStudio(@RequestParam Integer studioId) {
         StudioGeneralInfo userStudio = studiosService.findUserStudio(studioId);
         return userStudio;
     }
+
     @DeleteMapping
     @Operation(summary = "Kustutab kasutaja stuudio")
-    public void deleteUserStudio(@RequestParam Integer studioId){
+    public void deleteUserStudio(@RequestParam Integer studioId) {
         studiosService.deleteUserStudio(studioId);
     }
 
 
-
     @GetMapping("/all-selected-studios")
     @Operation(summary = "Kuvab kõik stuudiod valitud piirkonnas")
-    public List<StudioDtoBasic> findAllAreaStudios(Integer districtId){
+    public List<StudioDtoBasic> findAllAreaStudios(Integer districtId) {
         List<StudioDtoBasic> allAreaStudios = studiosService.findAllAreaStudios(districtId);
         return allAreaStudios;
-
-
     }
 
 
     @PutMapping
     @Operation(summary = "Muudab kasutaja stuudio",
             description = "Tagastab info koos ... MUUDA ÕIGEKS")
-    public void changeUserStudio(@RequestParam Integer studioId, @RequestBody StudioGeneralInfo studioGeneralInfo){
+    public void changeUserStudio(@RequestParam Integer studioId, @RequestBody StudioGeneralInfo studioGeneralInfo) {
         studiosService.changeUserStudio(studioId, studioGeneralInfo);
     }
 
-@GetMapping("/price")
-@Operation(summary = "Kuvab stuudio tunnihinna")
-    public StudioPriceDto findUserStudioHourPrice(@RequestParam Integer studioId){
-    StudioPriceDto userStudioHourPrice = studiosService.findUserStudioHourPrice(studioId);
-    return userStudioHourPrice;
-}
+    @GetMapping("/price")
+    @Operation(summary = "Kuvab stuudio tunnihinna")
+    public StudioPriceDto findUserStudioHourPrice(@RequestParam Integer studioId) {
+        StudioPriceDto userStudioHourPrice = studiosService.findUserStudioHourPrice(studioId);
+        return userStudioHourPrice;
+    }
 
+    @PatchMapping("/price")
+    @Operation(summary = "Salvestab üle ainult stuudio tunnihinna")
+    public void editUserStudioHourPrice(@RequestParam Integer studioId, StudioPriceDto studioPriceDto){
+        studiosService.editUserStudioHourPrice(studioId, studioPriceDto);
 
+    }
 
 }
