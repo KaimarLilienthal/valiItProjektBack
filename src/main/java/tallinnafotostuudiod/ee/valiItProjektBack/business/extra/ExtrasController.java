@@ -2,8 +2,12 @@ package tallinnafotostuudiod.ee.valiItProjektBack.business.extra;
 
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
-import org.springframework.web.bind.annotation.*;
-import tallinnafotostuudiod.ee.valiItProjektBack.business.extra.dto.ExtraDto;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import tallinnafotostuudiod.ee.valiItProjektBack.business.extra.dto.StudioExtraDto;
+import tallinnafotostuudiod.ee.valiItProjektBack.domain.studio.extra.Extra;
 
 import java.util.List;
 
@@ -15,10 +19,19 @@ public class ExtrasController {
 
     @GetMapping("/all")
     @Operation(summary = "Kuvab kõik lisateenused")
-    public List<ExtraDto> findAllExtras() {
-        List<ExtraDto> allExtras = extrasService.findAllExtras();
-        return allExtras;
+    public List<Extra> findAllExtras() {
+        List<Extra> extras = extrasService.findAllExtras();
+        return extras;
+
     }
+
+    @GetMapping("/studio-extras")
+    @Operation(summary = "Kuvab kõik valitud lisateenused hinnaga")
+    public List<StudioExtraDto> findAllSelectedExtrasWithPrice(@RequestParam Integer studioId) {
+        List<StudioExtraDto> selectedExtrasWithPrice = extrasService.findAllSelectedExtrasWithPrice(studioId);
+        return selectedExtrasWithPrice;
+    }
+
 
 //    @PostMapping("/studio-extra")
 //    @Operation(summary = "Lisab valitud ja hinnastatud lisateenused")

@@ -3,6 +3,7 @@ package tallinnafotostuudiod.ee.valiItProjektBack.domain.studio.extra;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service

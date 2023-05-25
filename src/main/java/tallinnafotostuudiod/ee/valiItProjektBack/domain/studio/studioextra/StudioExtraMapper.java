@@ -1,0 +1,22 @@
+package tallinnafotostuudiod.ee.valiItProjektBack.domain.studio.studioextra;
+
+import org.mapstruct.*;
+import tallinnafotostuudiod.ee.valiItProjektBack.business.extra.dto.StudioExtraDto;
+
+import java.util.List;
+
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
+public interface StudioExtraMapper {
+
+
+  @Mapping(source = "studio.id", target = "studioId")
+  @Mapping(source = "extra.id", target = "extraId")
+  @Mapping(source = "extra.name", target = "extraName")
+  @Mapping(source = "price", target = "extraPrice")
+
+    StudioExtraDto toDto(StudioExtra studioExtra);
+
+    List<StudioExtraDto> toExtrasDto(List<StudioExtra> studioExtras);
+
+
+}

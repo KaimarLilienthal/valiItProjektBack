@@ -5,19 +5,22 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import tallinnafotostuudiod.ee.valiItProjektBack.domain.studio.extra.Extra;
+import tallinnafotostuudiod.ee.valiItProjektBack.domain.studio.studioextra.StudioExtra;
 
 import java.io.Serializable;
 
 /**
- * DTO for {@link Extra}
+ * DTO for {@link StudioExtra}
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ExtraDto implements Serializable {
-    private Integer id;
+public class StudioExtraDto implements Serializable {
+    private Integer studioId;
+    private Integer extraId;
     @NotNull
     @Size(max = 255)
-    private String name;
+    private String extraName;
+    @NotNull
+    private Integer extraPrice;
 }
