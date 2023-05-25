@@ -16,6 +16,12 @@ INSERT INTO public.district (id, name) VALUES (DEFAULT, 'Nõmme');
 INSERT INTO public.district (id, name) VALUES (DEFAULT, 'Pirita');
 INSERT INTO public.district (id, name) VALUES (DEFAULT, 'Põhja-Tallinn');
 
+INSERT INTO public.extra (id, name) VALUES (DEFAULT, 'valgustus');
+INSERT INTO public.extra (id, name) VALUES (DEFAULT, 'mänguasjad');
+INSERT INTO public.extra (id, name) VALUES (DEFAULT, 'riided');
+INSERT INTO public.extra (id, name) VALUES (DEFAULT, 'kingad');
+INSERT INTO public.extra (id, name) VALUES (DEFAULT, 'ventilaator');
+
 
 
 

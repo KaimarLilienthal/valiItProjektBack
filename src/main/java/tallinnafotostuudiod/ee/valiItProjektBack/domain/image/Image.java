@@ -22,4 +22,7 @@ public class Image {
     public Image(byte[] data) {
         this.data = data;
     }
+
+    public Image() {
+    }
 }

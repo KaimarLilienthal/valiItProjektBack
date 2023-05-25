@@ -51,6 +51,7 @@ public class StudiosController {
     }
 
 
+
     @GetMapping("/all-selected-studios")
     @Operation(summary = "Kuvab kõik stuudiod valitud piirkonnas")
     public List<StudioDtoBasic> findAllAreaStudios(Integer districtId){
@@ -67,6 +68,7 @@ public class StudiosController {
     public void changeUserStudio(@RequestParam Integer studioId, @RequestBody StudioGeneralInfo studioGeneralInfo){
         studiosService.changeUserStudio(studioId, studioGeneralInfo);
     }
+
 
 
 
