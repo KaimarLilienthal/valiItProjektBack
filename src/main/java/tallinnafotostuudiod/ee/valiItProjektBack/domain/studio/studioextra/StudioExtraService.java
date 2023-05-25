@@ -13,7 +13,7 @@ public class StudioExtraService {
     private StudioExtraRepository studioExtraRepository;
 
     public List<StudioExtra> findAllExtras(Integer studioId) {
-        List<StudioExtra> extras = studioExtraRepository.findAll();
+        List<StudioExtra> extras = studioExtraRepository.findByStudio_Id(studioId);
         return extras;
 
     }
