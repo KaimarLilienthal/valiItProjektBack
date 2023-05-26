@@ -77,7 +77,7 @@ public class StudiosController {
 
     @PatchMapping("/price")
     @Operation(summary = "Salvestab üle ainult stuudio tunnihinna")
-    public void editUserStudioHourPrice(@RequestParam Integer studioId, StudioPriceDto studioPriceDto){
+    public void editUserStudioHourPrice(@RequestParam Integer studioId, @RequestBody StudioPriceDto studioPriceDto){
         studiosService.editUserStudioHourPrice(studioId, studioPriceDto);
 
     }
