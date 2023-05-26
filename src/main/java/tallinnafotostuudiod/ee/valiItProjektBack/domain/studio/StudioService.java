@@ -28,9 +28,8 @@ public class StudioService {
         ValidationService.validateUrlIsAvailable(urlExists);
     }
 
-    public Optional<Studio> getUserActiveStudio(Integer studioId) {
-        Optional<Studio> studio = studioRepository.findById(studioId);
-        return studio;
+    public Studio getUserActiveStudio(Integer studioId) {
+        return studioRepository.findById(studioId).get();
     }
 
     public void deleteUserActiveStudio(Integer studioId) {
@@ -39,7 +38,7 @@ public class StudioService {
 
 
     public List<Studio> findAllAreaStudios(Integer districtId) {
-        List<Studio> studio = studioRepository.findByDistrictId(districtId);
+        List<Studio> studio = studioRepository.findStudiosBy(districtId);
         return studio;
     }
 
@@ -47,6 +46,10 @@ public class StudioService {
     public Optional<Studio> findUserStudioHourPrice(Integer studioId) {
         Optional<Studio> hourPrice = studioRepository.findById(studioId);
         return hourPrice;
+    }
+
+    public Studio getStudioId(Integer studioId) {
+        return studioRepository.getStudioBy(studioId, "A");
     }
 }
 

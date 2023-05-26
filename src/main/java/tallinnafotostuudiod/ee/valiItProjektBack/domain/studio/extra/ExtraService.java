@@ -3,7 +3,6 @@ package tallinnafotostuudiod.ee.valiItProjektBack.domain.studio.extra;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -17,5 +16,11 @@ public class ExtraService {
         List<Extra> extras = extraRepository.findAll();
         return extras;
 
+    }
+
+
+    public Extra getExtraId(Integer extraId) {
+        Extra extra = extraRepository.findById(extraId).get();
+        return extra;
     }
 }

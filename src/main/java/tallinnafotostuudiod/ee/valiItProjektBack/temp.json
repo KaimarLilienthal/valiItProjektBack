@@ -1,8 +1,7 @@
 [
   {
-    "studioId": 1,
-    "studioName": "Tulbi fotostuudio",
-    "address": "Tulbi 12",
-    "imageData": "base64.kdsff"
+    "studioId": 0,
+    "extraId": 0,
+    "price": 0,
   }
 ]
