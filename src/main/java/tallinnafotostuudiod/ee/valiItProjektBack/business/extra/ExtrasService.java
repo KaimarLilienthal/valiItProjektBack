@@ -50,6 +50,7 @@ public class ExtrasService {
     }
 
     public void addStudioPricedExtras(StudioExtraSimpleDto studioExtraSimpleDto) {
+        extraService.findExistExtraBy(studioExtraSimpleDto.getStudioId(), studioExtraSimpleDto.getExtraId());
         StudioExtra studioExtra = studioExtraMapper.toStudioExtraEntity(studioExtraSimpleDto);
 
         Studio studio = studioService.getStudioId(studioExtraSimpleDto.getStudioId());

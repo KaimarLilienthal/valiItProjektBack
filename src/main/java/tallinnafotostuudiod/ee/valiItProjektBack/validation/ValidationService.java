@@ -29,4 +29,10 @@ public class ValidationService {
         }
     }
 
+    public static void validateExtraIsAvailable(boolean extraExists){
+        if (extraExists) {
+            throw new BusinessException(Error.EXTRA_UNAVAILABLE.getMessage(), Error.EXTRA_UNAVAILABLE.getErrorCode());
+        }
+    }
+
 }

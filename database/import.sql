@@ -22,11 +22,6 @@ INSERT INTO public.extra (id, name) VALUES (DEFAULT, 'riided');
 INSERT INTO public.extra (id, name) VALUES (DEFAULT, 'kingad');
 INSERT INTO public.extra (id, name) VALUES (DEFAULT, 'ventilaator');
 
-INSERT INTO public.studio_extra (id, studio_id, extra_id, price) VALUES (DEFAULT, 1, 1, 5);
-INSERT INTO public.studio_extra (id, studio_id, extra_id, price) VALUES (DEFAULT, 1, 2, 6);
-INSERT INTO public.studio_extra (id, studio_id, extra_id, price) VALUES (DEFAULT, 1, 3, 7);
-INSERT INTO public.studio_extra (id, studio_id, extra_id, price) VALUES (DEFAULT, 1, 4, 8);
-INSERT INTO public.studio_extra (id, studio_id, extra_id, price) VALUES (DEFAULT, 1, 5, 9);
 
 
 

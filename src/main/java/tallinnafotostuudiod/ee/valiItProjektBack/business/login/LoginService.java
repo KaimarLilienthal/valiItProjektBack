@@ -22,4 +22,8 @@ public class LoginService {
         return loginResponse;
     }
 
+    public String findEmail(String email) {
+        String exists = userService.findEmailExists(email);
+        return exists;
+    }
 }

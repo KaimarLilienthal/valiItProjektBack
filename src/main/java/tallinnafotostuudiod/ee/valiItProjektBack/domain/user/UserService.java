@@ -32,4 +32,13 @@ public class UserService {
         boolean exists = userRepository.existsBy(username);
         ValidationService.validateUserIsAvailable(exists);
     }
+
+    public String findEmailExists(String email) {
+        boolean exists = userRepository.existsByEmail(email);
+        if (exists) {
+            return "Parooli muudatus saadeti e-mailile "+ email;
+        } else {
+            return "E-maili ei leitud, palun registreeru.";
+        }
+    }
 }

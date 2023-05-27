@@ -17,5 +17,12 @@ public class LoginController {
         return loginResponse;
     }
 
+    @GetMapping("/register")
+    @Operation(summary = "Vaatab kas Email on juba süsteemis")
+    public String findEmail(@RequestParam String email) {
+        String exists = loginService.findEmail(email);
+        return exists;
+    }
+
 
 }
