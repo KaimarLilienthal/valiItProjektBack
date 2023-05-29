@@ -23,4 +23,5 @@ public class StudioExtraDto implements Serializable {
     private String extraName;
     @NotNull
     private Integer extraPrice;
+    private Boolean isSelected = false;
 }

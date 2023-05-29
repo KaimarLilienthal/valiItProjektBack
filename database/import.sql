@@ -23,6 +23,12 @@ INSERT INTO public.extra (id, name) VALUES (DEFAULT, 'kingad');
 INSERT INTO public.extra (id, name) VALUES (DEFAULT, 'ventilaator');
 
 
+INSERT INTO public.customer (id, name, phone, email) VALUES (DEFAULT, 'Jyri', '53535', 'jyri@gmail.com');
+
+INSERT INTO public.booking (id, studio_id, customer_id, date, total_price) VALUES (DEFAULT, 2, 1, '2023-05-31', 50);
+INSERT INTO public.hour (id, booking_id, start) VALUES (DEFAULT, 1, 15);
+
+
 
 
 
