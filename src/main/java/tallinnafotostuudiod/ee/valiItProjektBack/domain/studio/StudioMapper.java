@@ -50,6 +50,8 @@ public interface StudioMapper {
 
     Studio partialUpdate(StudioPriceDto studioPriceDto, @MappingTarget Studio studio);
 
+
+    @Mapping(source = "id", target = "studioId")
     @Mapping(source = "image", target = "imageData", qualifiedByName = "imageToImageData")
     @Mapping(source = "name", target = "studioName")
     StudioDtoBasic toAllStudioDto(Studio studio);

@@ -16,9 +16,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class StudioDtoBasic implements Serializable {
-    @NotNull
-    @Size(max = 255)
+    private Integer studioId;
     private String studioName;
-    @NotNull
     private String imageData;
+
 }
