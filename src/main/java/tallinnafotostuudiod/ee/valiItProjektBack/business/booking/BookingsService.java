@@ -3,13 +3,13 @@ package tallinnafotostuudiod.ee.valiItProjektBack.business.booking;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import tallinnafotostuudiod.ee.valiItProjektBack.business.booking.dto.AvailabilityRequest;
-import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.StudiosService;
-import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioGeneralInfo;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.booking.availability.Availability;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.booking.availability.AvailabilityMapper;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.booking.availability.AvailabilityService;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.studio.Studio;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.studio.StudioService;
+
+import java.util.List;
 
 @Service
 public class BookingsService {
@@ -33,5 +33,13 @@ public class BookingsService {
 
 
         availabilityService.addAvailability(availability);
+    }
+
+    public List<AvailabilityRequest> getStudioAvailabilities(Integer studioId) {
+        List<Availability> availabilities = availabilityService.allStudioAvailabilities(studioId);
+        List<AvailabilityRequest> availabilityRequests = availabilityMapper.toDtos(availabilities);
+        return availabilityRequests;
+
+
     }
 }
