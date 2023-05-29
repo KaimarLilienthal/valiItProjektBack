@@ -25,7 +25,7 @@ public class BookingsService {
     private StudioService studioService;
 
     public void addBookingAvailability(Integer studioId, AvailabilityRequest availabilityRequest) {
-        availabilityService.studioAvailabilityExists(availabilityRequest.getStartDate(), availabilityRequest.getEndDate());
+        availabilityService.studioAvailabilityExists(availabilityRequest.getStartDate());
 
         // todo: otsi studioId abil ülesse studio objekt
         Studio studio = studioService.getUserActiveStudio(studioId);

@@ -12,6 +12,8 @@ public interface AvailabilityRepository extends JpaRepository<Availability, Inte
 
 
 
+    @Query("SELECT COUNT(a) > 0 FROM Availability a WHERE a.startDate <= ?1 AND a.endDate >= ?1")
+    boolean existsByStartDateBetweenPreviousDates(LocalDate startDate);
 
 
 
