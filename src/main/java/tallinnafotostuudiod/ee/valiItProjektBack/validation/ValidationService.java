@@ -35,4 +35,10 @@ public class ValidationService {
         }
     }
 
+    public static void validateStartDateIsAvailable(boolean availabilityExists) {
+        if (availabilityExists) {
+            throw new BusinessException(Error.STARTDATE_UNAVAILABLE.getMessage(), Error.STARTDATE_UNAVAILABLE.getErrorCode());
+        }
+    }
+
 }

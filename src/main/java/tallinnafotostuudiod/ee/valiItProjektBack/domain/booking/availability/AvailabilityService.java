@@ -1,8 +1,11 @@
 package tallinnafotostuudiod.ee.valiItProjektBack.domain.booking.availability;
 
 import jakarta.annotation.Resource;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Service;
+import tallinnafotostuudiod.ee.valiItProjektBack.validation.ValidationService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -31,6 +34,12 @@ public class AvailabilityService {
 
     public void deleteStudioAvailabilityBy(Integer availabilityId) {
         availabilityRepository.deleteById(availabilityId);
+    }
+
+    public void studioAvailabilityExists(LocalDate startDate, @NotNull LocalDate endDate) {
+        boolean availabilityExists = availabilityRepository.existsByStartDateLessThanEqualAndEndDateGreaterThanEqual(startDate,endDate);
+        ValidationService.validateStartDateIsAvailable(availabilityExists);
+
     }
 }
 
