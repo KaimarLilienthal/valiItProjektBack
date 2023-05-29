@@ -28,5 +28,9 @@ public class AvailabilityService {
 
 
     }
+
+    public void deleteStudioAvailabilityBy(Integer availabilityId) {
+        availabilityRepository.deleteById(availabilityId);
+    }
 }
 

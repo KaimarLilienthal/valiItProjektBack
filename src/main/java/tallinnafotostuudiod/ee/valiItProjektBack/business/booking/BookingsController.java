@@ -23,8 +23,11 @@ public class BookingsController {
     public List<AvailabilityInfoDto> getStudioAvailabilities(@RequestParam Integer studioId) {
         List<AvailabilityInfoDto> studioAvailabilities = bookingsService.getStudioAvailabilities(studioId);
         return studioAvailabilities;
+    }
 
-
+    @DeleteMapping("availability")
+    public void deleteStudioAvailability(@RequestParam Integer availabilityId) {
+        bookingsService.deleteStudioAvailability(availabilityId);
     }
 
 }

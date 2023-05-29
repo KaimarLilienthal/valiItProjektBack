@@ -43,4 +43,8 @@ public class BookingsService {
 
 
     }
+
+    public void deleteStudioAvailability(Integer availabilityId) {
+        availabilityService.deleteStudioAvailabilityBy(availabilityId);
+    }
 }
