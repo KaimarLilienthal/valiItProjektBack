@@ -2,6 +2,7 @@ package tallinnafotostuudiod.ee.valiItProjektBack.business.booking;
 
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
+import tallinnafotostuudiod.ee.valiItProjektBack.business.booking.dto.AvailabilityInfoDto;
 import tallinnafotostuudiod.ee.valiItProjektBack.business.booking.dto.AvailabilityRequest;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.booking.availability.Availability;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.booking.availability.AvailabilityMapper;
@@ -35,10 +36,10 @@ public class BookingsService {
         availabilityService.addAvailability(availability);
     }
 
-    public List<AvailabilityRequest> getStudioAvailabilities(Integer studioId) {
+    public List<AvailabilityInfoDto> getStudioAvailabilities(Integer studioId) {
         List<Availability> availabilities = availabilityService.allStudioAvailabilities(studioId);
-        List<AvailabilityRequest> availabilityRequests = availabilityMapper.toDtos(availabilities);
-        return availabilityRequests;
+        List<AvailabilityInfoDto> availabilitiesInfoDto = availabilityMapper.toAvailabilitiesDto(availabilities);
+        return availabilitiesInfoDto;
 
 
     }

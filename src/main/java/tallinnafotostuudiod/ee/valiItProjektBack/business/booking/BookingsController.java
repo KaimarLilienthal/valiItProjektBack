@@ -2,6 +2,7 @@ package tallinnafotostuudiod.ee.valiItProjektBack.business.booking;
 
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
+import tallinnafotostuudiod.ee.valiItProjektBack.business.booking.dto.AvailabilityInfoDto;
 import tallinnafotostuudiod.ee.valiItProjektBack.business.booking.dto.AvailabilityRequest;
 
 import java.util.List;
@@ -19,8 +20,8 @@ public class BookingsController {
     }
 
     @GetMapping("/availability")
-    public List<AvailabilityRequest> getStudioAvailabilities(@RequestParam Integer studioId) {
-        List<AvailabilityRequest> studioAvailabilities = bookingsService.getStudioAvailabilities(studioId);
+    public List<AvailabilityInfoDto> getStudioAvailabilities(@RequestParam Integer studioId) {
+        List<AvailabilityInfoDto> studioAvailabilities = bookingsService.getStudioAvailabilities(studioId);
         return studioAvailabilities;
 
 
