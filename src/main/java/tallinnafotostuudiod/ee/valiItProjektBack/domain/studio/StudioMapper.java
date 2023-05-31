@@ -39,6 +39,7 @@ public interface StudioMapper {
     @Mapping(source = "url", target = "website")
     StudioGeneralInfo toUserStudioDto(Studio studio);
 
+    @Mapping(source = "studioName", target = "name")
     @Mapping(source = "imageData", target = "image", qualifiedByName = "imageDataToImage")
     @Mapping(source = "website", target = "url")
     @Mapping(source = "address", target = "address.street")
