@@ -90,6 +90,8 @@ public class BookingsService {
     public List<AvailabilityHourDto> getStudioAvailableHours(Integer studioId, LocalDate selectedDate) {
         Availability availability = availabilityService.findStudioAvailability(studioId, selectedDate);
 
+        List<Integer> bookedStartHours = getBookedStartHours(studioId, selectedDate);
+
         List<AvailabilityHourDto> hourDtos = new ArrayList<>();
 
         if (availability == null) {
@@ -99,12 +101,28 @@ public class BookingsService {
         Integer endHour = availability.getEndHour();
 
         for (int hour = startHour; hour < endHour; hour++) {
-            AvailabilityHourDto availabilityHour = new AvailabilityHourDto(hour);
-            hourDtos.add(availabilityHour);
+            if (!bookedStartHours.contains(hour)) {
+                AvailabilityHourDto availabilityHour = new AvailabilityHourDto(hour);
+                hourDtos.add(availabilityHour);
+            }
         }
 
         return hourDtos;
 
+    }
+
+    private List<Integer> getBookedStartHours(Integer studioId, LocalDate selectedDate) {
+        List<Booking> bookings = bookingService.getBookingsBy(studioId, selectedDate);
+
+        List<Integer> bookedStartHours = new ArrayList<>();
+        for (Booking booking : bookings) {
+            List<Hour> bookedHours = hourService.getBookingHoursBy(booking.getId());
+
+            for (Hour bookedHour : bookedHours) {
+                bookedStartHours.add(bookedHour.getStart());
+            }
+        }
+        return bookedStartHours;
     }
 
     @Transactional
