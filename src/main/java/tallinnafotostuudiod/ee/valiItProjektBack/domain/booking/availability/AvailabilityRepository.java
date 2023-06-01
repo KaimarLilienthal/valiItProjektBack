@@ -7,14 +7,16 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface AvailabilityRepository extends JpaRepository<Availability, Integer> {
+    @Query("select (count(a) > 0) from Availability a where a.studio.id = ?1 and a.startDate <= ?2 and a.endDate >= ?2")
+    boolean existsByStudio_IdAndStartDateAndEndDate(Integer id, LocalDate startDate, LocalDate endDate);
 
 
 
 
 
 
-    @Query("SELECT COUNT(a) > 0 FROM Availability a WHERE a.startDate <= ?1 AND a.endDate >= ?1")
-    boolean existsByStartDateBetweenPreviousDates(LocalDate startDate);
+//    @Query("SELECT COUNT(a) > 0 FROM Availability a WHERE a.startDate <= ?1 AND a.endDate >= ?1")
+//    boolean existsByStartDateBetweenPreviousDates(Integer studioId, LocalDate startDate);
 
 
 

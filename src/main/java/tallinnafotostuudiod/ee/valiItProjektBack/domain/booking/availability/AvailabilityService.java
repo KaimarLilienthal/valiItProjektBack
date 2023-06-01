@@ -35,8 +35,8 @@ public class AvailabilityService {
         availabilityRepository.deleteById(availabilityId);
     }
 
-    public void studioAvailabilityExists(LocalDate startDate) {
-        boolean availabilityExists = availabilityRepository.existsByStartDateBetweenPreviousDates(startDate);
+    public void studioAvailabilityExists(Integer studioId, LocalDate startDate) {
+        boolean availabilityExists = availabilityRepository.existsByStudio_IdAndStartDateAndEndDate(studioId, startDate,startDate);
         ValidationService.validateStartDateIsAvailable(availabilityExists);
 
     }
