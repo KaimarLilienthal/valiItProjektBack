@@ -2,10 +2,7 @@ package tallinnafotostuudiod.ee.valiItProjektBack.business.booking;
 
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
-import tallinnafotostuudiod.ee.valiItProjektBack.business.booking.dto.AvailabilityHourDto;
-import tallinnafotostuudiod.ee.valiItProjektBack.business.booking.dto.AvailabilityInfoDto;
-import tallinnafotostuudiod.ee.valiItProjektBack.business.booking.dto.AvailabilityRequest;
-import tallinnafotostuudiod.ee.valiItProjektBack.business.booking.dto.BookingDto;
+import tallinnafotostuudiod.ee.valiItProjektBack.business.booking.dto.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -40,9 +37,19 @@ public class BookingsController {
     }
 
     @PostMapping("studio-booking")
-    public void saveSelectedBooking(@RequestParam Integer studioId, @RequestBody BookingDto bookingDto){
-        bookingsService.saveSelectedBooking(studioId, bookingDto);
+    public Integer saveSelectedBooking(@RequestParam Integer studioId, @RequestBody BookingDto bookingDto){
+      return bookingsService.saveSelectedBooking(studioId, bookingDto);
 
     }
 
-}
+    @GetMapping("/payment")
+    public BookingInfoDto getBookingInformation(@RequestParam Integer bookingId){
+        BookingInfoDto bookingInformation = bookingsService.getBookingInformation(bookingId);
+        return bookingInformation;
+
+    }
+
+
+    }
+
+

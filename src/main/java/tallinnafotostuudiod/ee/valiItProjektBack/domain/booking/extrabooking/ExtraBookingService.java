@@ -14,4 +14,8 @@ public class ExtraBookingService {
     public void addExtraBookings(List<ExtraBooking> extraBookings) {
         extraBookingRepository.saveAll(extraBookings);
     }
+
+    public List<ExtraBooking> findExtraBookings(Integer bookingId) {
+       return extraBookingRepository.findExtraBookingsBy(bookingId);
+    }
 }

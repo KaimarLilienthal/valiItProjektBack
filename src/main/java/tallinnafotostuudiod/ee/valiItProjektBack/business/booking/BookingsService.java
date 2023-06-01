@@ -3,10 +3,8 @@ package tallinnafotostuudiod.ee.valiItProjektBack.business.booking;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import tallinnafotostuudiod.ee.valiItProjektBack.business.booking.dto.AvailabilityHourDto;
-import tallinnafotostuudiod.ee.valiItProjektBack.business.booking.dto.AvailabilityInfoDto;
-import tallinnafotostuudiod.ee.valiItProjektBack.business.booking.dto.AvailabilityRequest;
-import tallinnafotostuudiod.ee.valiItProjektBack.business.booking.dto.BookingDto;
+import tallinnafotostuudiod.ee.valiItProjektBack.business.booking.dto.*;
+import tallinnafotostuudiod.ee.valiItProjektBack.business.extra.dto.ExtraBookingDto;
 import tallinnafotostuudiod.ee.valiItProjektBack.business.extra.dto.StudioExtraDto;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.booking.Booking;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.booking.BookingMapper;
@@ -15,19 +13,19 @@ import tallinnafotostuudiod.ee.valiItProjektBack.domain.booking.availability.Ava
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.booking.availability.AvailabilityMapper;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.booking.availability.AvailabilityService;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.booking.extrabooking.ExtraBooking;
+import tallinnafotostuudiod.ee.valiItProjektBack.domain.booking.extrabooking.ExtraBookingMapper;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.booking.extrabooking.ExtraBookingService;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.booking.hour.Hour;
+import tallinnafotostuudiod.ee.valiItProjektBack.domain.booking.hour.HourMapper;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.booking.hour.HourService;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.studio.Studio;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.studio.StudioService;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.studio.extra.Extra;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.studio.extra.ExtraService;
-import tallinnafotostuudiod.ee.valiItProjektBack.domain.studio.studioextra.StudioExtra;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class BookingsService {
@@ -49,6 +47,12 @@ public class BookingsService {
 
     @Resource
     private HourService hourService;
+
+    @Resource
+    private HourMapper hourMapper;
+
+    @Resource
+    private ExtraBookingMapper extraBookingMapper;
 
     @Resource
     private ExtraService extraService;
@@ -104,7 +108,7 @@ public class BookingsService {
     }
 
     @Transactional
-    public void saveSelectedBooking(Integer studioId, BookingDto bookingDto) {
+    public Integer saveSelectedBooking(Integer studioId, BookingDto bookingDto) {
         Booking booking = bookingMapper.toEntity(bookingDto);
         Studio studio = studioService.getUserActiveStudio(studioId);
         booking.setStudio(studio);
@@ -144,7 +148,7 @@ public class BookingsService {
 
         booking.setTotalPrice(totalPrice);
         bookingService.addBooking(booking);
-
+        return booking.getId();
     }
 
     private static int calculateHoursTotalPrice(Studio studio, List<Hour> hours) {
@@ -165,4 +169,23 @@ public class BookingsService {
         }
         return hours;
     }
+
+    public BookingInfoDto getBookingInformation(Integer bookingId) {
+        Booking booking = bookingService.getBookingInformation(bookingId);
+
+        BookingInfoDto bookingDto = bookingMapper.toBookingDto(booking);
+        List<Hour> hours = hourService.getBookingHoursBy(bookingId);
+        List<HourDto> hoursDto = hourMapper.toHoursDto(hours);
+        bookingDto.setHours(hoursDto);
+
+
+        List<ExtraBooking> extraBookings = extraBookingService.findExtraBookings(bookingId);
+        List<ExtraBookingDto> dtos = extraBookingMapper.toDtos(extraBookings);
+        bookingDto.setExtraBookings(dtos);
+
+        return bookingDto;
+    }
+
+
 }
+
