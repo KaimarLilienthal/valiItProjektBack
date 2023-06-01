@@ -37,4 +37,9 @@ public class ExtraService {
 
 
     }
+
+    public Extra findExtraBy(Integer extraId) {
+        Extra extra = extraRepository.findById(extraId).get();
+        return extra;
+    }
 }

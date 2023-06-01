@@ -16,12 +16,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class StudioExtraDto implements Serializable {
-    private Integer studioId;
     private Integer extraId;
-    @NotNull
-    @Size(max = 255)
     private String extraName;
-    @NotNull
     private Integer extraPrice;
     private Boolean isSelected = false;
 }

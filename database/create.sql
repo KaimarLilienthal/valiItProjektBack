@@ -26,7 +26,7 @@ CREATE TABLE availability (
 CREATE TABLE booking (
     id serial  NOT NULL,
     studio_id int  NOT NULL,
-    customer_id int  NOT NULL,
+    customer_id int NULL,
     date date  NOT NULL,
     total_price int  NOT NULL,
     CONSTRAINT booking_pk PRIMARY KEY (id)

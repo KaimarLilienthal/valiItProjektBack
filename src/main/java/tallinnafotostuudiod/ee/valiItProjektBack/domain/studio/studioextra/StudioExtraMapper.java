@@ -10,7 +10,6 @@ import java.util.List;
 public interface StudioExtraMapper {
 
 
-  @Mapping(source = "studio.id", target = "studioId")
   @Mapping(source = "extra.id", target = "extraId")
   @Mapping(source = "extra.name", target = "extraName")
   @Mapping(source = "price", target = "extraPrice")

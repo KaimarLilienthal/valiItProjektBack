@@ -1,7 +1,6 @@
 package tallinnafotostuudiod.ee.valiItProjektBack.domain.booking.availability;
 
 import jakarta.annotation.Resource;
-import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Service;
 import tallinnafotostuudiod.ee.valiItProjektBack.validation.ValidationService;
 
@@ -26,7 +25,7 @@ public class AvailabilityService {
 
 
     public List<Availability> allStudioAvailabilities(Integer studioId) {
-        List<Availability> availabilities = availabilityRepository.findAvailabilitiesBy(studioId);
+        List<Availability> availabilities = availabilityRepository.findAvailabilityBy(studioId);
         return availabilities;
 
 
@@ -40,6 +39,10 @@ public class AvailabilityService {
         boolean availabilityExists = availabilityRepository.existsByStartDateBetweenPreviousDates(startDate);
         ValidationService.validateStartDateIsAvailable(availabilityExists);
 
+    }
+
+    public Availability findStudioAvailability(Integer studioId, LocalDate selectedDate) {
+        return availabilityRepository.findAvailabilityBy(studioId, selectedDate, selectedDate);
     }
 }
 
