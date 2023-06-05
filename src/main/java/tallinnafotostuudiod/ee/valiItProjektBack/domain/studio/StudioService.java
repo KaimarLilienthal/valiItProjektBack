@@ -34,8 +34,9 @@ public class StudioService {
 
 
     public List<Studio> findAllAreaStudios(Integer districtId) {
-        List<Studio> studio = studioRepository.findStudiosBy(districtId);
-        return studio;
+//        List<Studio> studio = studioRepository.findStudiosBy(districtId);
+        List<Studio> studios = studioRepository.findByStatusAndId("A", districtId);
+        return studios;
     }
 
     public Optional<Studio> findUserStudioHourPrice(Integer studioId) {
