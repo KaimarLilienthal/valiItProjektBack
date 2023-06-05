@@ -26,4 +26,5 @@ public class LoginService {
         String exists = userService.findEmailExists(email);
         return exists;
     }
+
 }

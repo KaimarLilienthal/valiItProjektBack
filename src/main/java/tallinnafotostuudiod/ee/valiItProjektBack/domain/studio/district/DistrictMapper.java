@@ -16,4 +16,5 @@ public interface DistrictMapper {
     DistrictDto toDistrictDto(District district);
 
     List<DistrictDto> toDistrictsDto(List<District> districts);
+
 }

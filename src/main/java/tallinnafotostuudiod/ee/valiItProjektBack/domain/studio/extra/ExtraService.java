@@ -18,13 +18,10 @@ public class ExtraService {
         this.studioExtraRepository = studioExtraRepository;
     }
 
-
     public List<Extra> findAllExtras() {
         List<Extra> extras = extraRepository.findAll();
         return extras;
-
     }
-
 
     public Extra getExtraId(Integer extraId) {
         Extra extra = extraRepository.findById(extraId).get();
@@ -34,12 +31,11 @@ public class ExtraService {
     public void findExistExtraBy(Integer studioId, Integer extraId) {
         boolean extraExists = studioExtraRepository.existsBy(studioId, extraId);
         ValidationService.validateExtraIsAvailable(extraExists);
-
-
     }
 
     public Extra findExtraBy(Integer extraId) {
         Extra extra = extraRepository.findById(extraId).get();
         return extra;
     }
+
 }

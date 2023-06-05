@@ -39,6 +39,6 @@ public class UsersService {
 
         user.setRole(role);
         userService.addUser(user);
-
     }
+
 }

@@ -7,6 +7,7 @@ import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioDto;
 import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioDtoBasic;
 import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioGeneralInfo;
 import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioPriceDto;
+import tallinnafotostuudiod.ee.valiItProjektBack.domain.booking.BookingService;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.image.Image;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.image.ImageService;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.studio.Studio;
@@ -17,6 +18,8 @@ import tallinnafotostuudiod.ee.valiItProjektBack.domain.studio.address.AddressMa
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.studio.address.AddressService;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.studio.district.District;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.studio.district.DistrictService;
+import tallinnafotostuudiod.ee.valiItProjektBack.domain.studio.studioextra.StudioExtraRepository;
+import tallinnafotostuudiod.ee.valiItProjektBack.domain.studio.studioextra.StudioExtraService;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.user.User;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.user.UserService;
 import tallinnafotostuudiod.ee.valiItProjektBack.util.ImageUtil;
@@ -45,6 +48,19 @@ public class StudiosService {
     private StudioMapper studioMapper;
     @Resource
     private AddressMapper addressMapper;
+
+    @Resource
+    private StudioExtraService studioExtraService;
+
+    @Resource
+    private StudioExtraRepository studioExtraRepository;
+
+    @Resource
+    private BookingService bookingService;
+
+    public StudiosService(StudioExtraRepository studioExtraRepository) {
+        this.studioExtraRepository = studioExtraRepository;
+    }
 
 
     public List<StudioDto> findUserStudios(Integer userId) {
@@ -100,7 +116,6 @@ public class StudiosService {
         // TODO: 5/19/2023 Siin oleks hea debbugeri breakpoint
 
         // TODO: 5/19/2023 toimub 'studio' objekt/rea salvestamine (studioService->studioRepository save() abil)
-
     }
 
     public void editUserStudioHourPrice(Integer studioId, StudioPriceDto studioPriceDto) {
@@ -140,17 +155,16 @@ public class StudiosService {
         return studioDto;
     }
 
-
     public void deleteUserStudio(Integer studioId) {
-        studioService.deleteUserActiveStudio(studioId);
+        Studio studio = studioService.getUserActiveStudio(studioId);
+        studio.setStatus("D");
+        studioService.addStudio(studio);
     }
-
 
     public List<StudioDtoBasic> findAllAreaStudios(Integer districtId) {
         List<Studio> studios = studioService.findAllAreaStudios(districtId);
         List<StudioDtoBasic> allStudioDtos = studioMapper.toAllStudioDtos(studios);
         return allStudioDtos;
-
     }
 
 
@@ -159,7 +173,5 @@ public class StudiosService {
         StudioPriceDto studioPriceDto = studioMapper.toStudioPriceDto(userStudioHourPrice.get());
         return studioPriceDto;
     }
-
-
 
 }

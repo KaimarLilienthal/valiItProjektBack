@@ -16,9 +16,7 @@ public class UserService {
         Optional<User> userOptional = userRepository.findUserBy(username, password, "A");
         ValidationService.validateCorrectUserCredentials(userOptional);
         return userOptional.get();
-
     }
-
 
     public User findActiveStudioUserBy(Integer ownerUserId) {
         User user = userRepository.findById(ownerUserId).get();
@@ -28,6 +26,7 @@ public class UserService {
     public void addUser(User user) {
         userRepository.save(user);
     }
+
     public void findExistsUserBy(String username) {
         boolean exists = userRepository.existsBy(username);
         ValidationService.validateUserIsAvailable(exists);
@@ -41,4 +40,5 @@ public class UserService {
             return "E-maili ei leitud, palun registreeru.";
         }
     }
+
 }

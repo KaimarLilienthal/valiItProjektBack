@@ -18,4 +18,5 @@ public class DistrictsController {
         List<DistrictDto> districts = districtsService.getDistricts();
         return districts;
     }
+
 }

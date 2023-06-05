@@ -7,10 +7,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
-import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioDto;
-import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioDtoBasic;
-import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioGeneralInfo;
-import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioPriceDto;
+import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.*;
 import tallinnafotostuudiod.ee.valiItProjektBack.infrastructure.error.ApiError;
 
 import java.util.List;

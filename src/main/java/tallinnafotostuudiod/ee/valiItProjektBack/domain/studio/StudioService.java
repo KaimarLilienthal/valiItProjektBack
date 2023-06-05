@@ -18,7 +18,6 @@ public class StudioService {
         return studios;
     }
 
-
     public void addStudio(Studio studio) {
         studioRepository.save(studio);
     }
@@ -32,16 +31,12 @@ public class StudioService {
         return studioRepository.findById(studioId).get();
     }
 
-    public void deleteUserActiveStudio(Integer studioId) {
-        studioRepository.deleteById(studioId);
-    }
 
 
     public List<Studio> findAllAreaStudios(Integer districtId) {
         List<Studio> studio = studioRepository.findStudiosBy(districtId);
         return studio;
     }
-
 
     public Optional<Studio> findUserStudioHourPrice(Integer studioId) {
         Optional<Studio> hourPrice = studioRepository.findById(studioId);
@@ -51,5 +46,6 @@ public class StudioService {
     public Studio getStudioId(Integer studioId) {
         return studioRepository.getStudioBy(studioId, "A");
     }
+
 }
 

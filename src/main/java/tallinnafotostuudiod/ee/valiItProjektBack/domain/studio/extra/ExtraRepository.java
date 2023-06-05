@@ -6,6 +6,4 @@ import java.util.Optional;
 
 public interface ExtraRepository extends JpaRepository<Extra, Integer> {
 
-
-
 }

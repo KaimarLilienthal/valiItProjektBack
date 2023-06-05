@@ -11,5 +11,4 @@ public interface CustomerMapper {
     @Mapping(source = "customerEmail", target = "email")
     Customer toEntity(CustomerDto customerDto);
 
-
 }

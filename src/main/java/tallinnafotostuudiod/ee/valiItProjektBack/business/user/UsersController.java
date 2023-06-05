@@ -18,4 +18,5 @@ public class UsersController {
     public void addUser(@RequestBody NewUser newUser) {
         usersService.addUser(newUser);
     }
+
 }

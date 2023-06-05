@@ -24,4 +24,5 @@ public class DistrictsService {
         return districtDtos;
 
     }
+
 }

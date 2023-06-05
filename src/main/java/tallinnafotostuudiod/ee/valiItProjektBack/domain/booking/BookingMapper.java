@@ -12,4 +12,5 @@ public interface BookingMapper {
     @Mapping(source = "date", target = "bookingDate")
     @Mapping(source = "studio.hourPrice", target = "houPrice")
     BookingInfoDto toBookingDto(Booking booking);
+
 }

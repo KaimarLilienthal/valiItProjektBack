@@ -29,7 +29,6 @@ public interface AvailabilityMapper {
 
     List<AvailabilityInfoDto> toAvailabilitiesDto(List<Availability> availabilities);
 
-
     @Mapping(source = "startHour", target = "startHour", qualifiedByName = "integerToTimeString")
     AvailabilityHourDto toAvailabilityHourDto(Availability availability);
 
@@ -46,10 +45,5 @@ public interface AvailabilityMapper {
         String string = TimeUtil.IntegerTotimeString(hour);
         return string;
     }
-
-
-
-
-
 
 }

@@ -31,10 +31,13 @@ import java.util.List;
 public class BookingsService {
 
     @Resource
-    private AvailabilityService availabilityService;
+    private HourMapper hourMapper;
 
     @Resource
-    private AvailabilityMapper availabilityMapper;
+    private HourService hourService;
+
+    @Resource
+    private ExtraService extraService;
 
     @Resource
     private StudioService studioService;
@@ -44,34 +47,25 @@ public class BookingsService {
 
     @Resource
     private BookingService bookingService;
-
     @Resource
-    private HourService hourService;
-
-    @Resource
-    private HourMapper hourMapper;
-
+    private AvailabilityMapper availabilityMapper;
     @Resource
     private ExtraBookingMapper extraBookingMapper;
 
     @Resource
-    private ExtraService extraService;
+    private ExtraBookingService extraBookingService;
 
     @Resource
-    private ExtraBookingService extraBookingService;
+    private AvailabilityService availabilityService;
 
 
     public void addBookingAvailability(Integer studioId, AvailabilityRequest availabilityRequest) {
         availabilityService.studioAvailabilityExists(studioId, availabilityRequest.getStartDate());
-
-        // todo: otsi studioId abil ülesse studio objekt
+        // otsi studioId abil ülesse studio objekt
         Studio studio = studioService.getUserActiveStudio(studioId);
         Availability availability = availabilityMapper.toAvailability(availabilityRequest);
-        // todo: pane setteriga studio objekt külge (andmebaasis on meil foreign key number, Javas on objekt)
-
+        // pane setteriga studio objekt külge (andmebaasis on meil foreign key number, Javas on objekt)
         availability.setStudio(studio);
-
-
         availabilityService.addAvailability(availability);
     }
 
@@ -79,8 +73,6 @@ public class BookingsService {
         List<Availability> availabilities = availabilityService.allStudioAvailabilities(studioId);
         List<AvailabilityInfoDto> availabilitiesInfoDto = availabilityMapper.toAvailabilitiesDto(availabilities);
         return availabilitiesInfoDto;
-
-
     }
 
     public void deleteStudioAvailability(Integer availabilityId) {
@@ -89,31 +81,24 @@ public class BookingsService {
 
     public List<AvailabilityHourDto> getStudioAvailableHours(Integer studioId, LocalDate selectedDate) {
         Availability availability = availabilityService.findStudioAvailability(studioId, selectedDate);
-
         List<Integer> bookedStartHours = getBookedStartHours(studioId, selectedDate);
-
         List<AvailabilityHourDto> hourDtos = new ArrayList<>();
-
         if (availability == null) {
             return hourDtos;
         }
         Integer startHour = availability.getStartHour();
         Integer endHour = availability.getEndHour();
-
         for (int hour = startHour; hour < endHour; hour++) {
             if (!bookedStartHours.contains(hour)) {
                 AvailabilityHourDto availabilityHour = new AvailabilityHourDto(hour);
                 hourDtos.add(availabilityHour);
             }
         }
-
         return hourDtos;
-
     }
 
     private List<Integer> getBookedStartHours(Integer studioId, LocalDate selectedDate) {
         List<Booking> bookings = bookingService.getBookingsBy(studioId, selectedDate);
-
         List<Integer> bookedStartHours = new ArrayList<>();
         for (Booking booking : bookings) {
             List<Hour> bookedHours = hourService.getBookingHoursBy(booking.getId());
@@ -132,17 +117,11 @@ public class BookingsService {
         booking.setStudio(studio);
         booking.setTotalPrice(0);
         bookingService.addBooking(booking);
-
         List<Hour> hours = createHours(bookingDto, booking);
         //  hourService -> hourRepository -> saveAll(hours)
         hourService.addBookingHours(hours);
-
-
         int totalPrice = calculateHoursTotalPrice(studio, hours);
-
-
         List<ExtraBooking> extraBookings = new ArrayList<>();
-
         for (StudioExtraDto studioExtraDto : bookingDto.getStudioExtras()) {
             if (studioExtraDto.getIsSelected()) {
                 totalPrice += studioExtraDto.getExtraPrice();
@@ -158,12 +137,8 @@ public class BookingsService {
                 extraBookings.add(extraBooking);
             }
         }
-
-        // todo:
-        // todo studioExtraService -> studioExtraRepository -> saveAll(extraBookings)
-
+        // studioExtraService -> studioExtraRepository -> saveAll(extraBookings)
         extraBookingService.addExtraBookings(extraBookings);
-
         booking.setTotalPrice(totalPrice);
         bookingService.addBooking(booking);
         return booking.getId();
@@ -190,20 +165,15 @@ public class BookingsService {
 
     public BookingInfoDto getBookingInformation(Integer bookingId) {
         Booking booking = bookingService.getBookingInformation(bookingId);
-
         BookingInfoDto bookingDto = bookingMapper.toBookingDto(booking);
         List<Hour> hours = hourService.getBookingHoursBy(bookingId);
         List<HourDto> hoursDto = hourMapper.toHoursDto(hours);
         bookingDto.setHours(hoursDto);
-
-
         List<ExtraBooking> extraBookings = extraBookingService.findExtraBookings(bookingId);
         List<ExtraBookingDto> dtos = extraBookingMapper.toDtos(extraBookings);
         bookingDto.setExtraBookings(dtos);
-
         return bookingDto;
     }
-
 
 }
 

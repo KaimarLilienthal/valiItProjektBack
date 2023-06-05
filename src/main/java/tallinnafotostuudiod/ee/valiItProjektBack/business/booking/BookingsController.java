@@ -19,10 +19,29 @@ public class BookingsController {
         bookingsService.addBookingAvailability(studioId, availabilityRequest);
     }
 
+    @PostMapping("studio-booking")
+    public Integer saveSelectedBooking(@RequestParam Integer studioId, @RequestBody BookingDto bookingDto) {
+        return bookingsService.saveSelectedBooking(studioId, bookingDto);
+
+    }
+
     @GetMapping("/availability")
     public List<AvailabilityInfoDto> getStudioAvailabilities(@RequestParam Integer studioId) {
         List<AvailabilityInfoDto> studioAvailabilities = bookingsService.getStudioAvailabilities(studioId);
         return studioAvailabilities;
+    }
+
+    @GetMapping("availability/studio-times")
+    public List<AvailabilityHourDto> getStudioAvailableHours(@RequestParam Integer studioId, @RequestParam LocalDate selectedDate) {
+        return bookingsService.getStudioAvailableHours(studioId, selectedDate);
+
+    }
+
+    @GetMapping("/payment")
+    public BookingInfoDto getBookingInformation(@RequestParam Integer bookingId) {
+        BookingInfoDto bookingInformation = bookingsService.getBookingInformation(bookingId);
+        return bookingInformation;
+
     }
 
     @DeleteMapping("availability")
@@ -30,26 +49,6 @@ public class BookingsController {
         bookingsService.deleteStudioAvailability(availabilityId);
     }
 
-    @GetMapping("availability/studio-times")
-    public List<AvailabilityHourDto> getStudioAvailableHours(@RequestParam Integer studioId, @RequestParam LocalDate selectedDate){
-       return bookingsService.getStudioAvailableHours(studioId, selectedDate);
-
-    }
-
-    @PostMapping("studio-booking")
-    public Integer saveSelectedBooking(@RequestParam Integer studioId, @RequestBody BookingDto bookingDto){
-      return bookingsService.saveSelectedBooking(studioId, bookingDto);
-
-    }
-
-    @GetMapping("/payment")
-    public BookingInfoDto getBookingInformation(@RequestParam Integer bookingId){
-        BookingInfoDto bookingInformation = bookingsService.getBookingInformation(bookingId);
-        return bookingInformation;
-
-    }
-
-
-    }
+}
 
 

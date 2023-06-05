@@ -19,5 +19,4 @@ public class StudioDtoBasic implements Serializable {
     private Integer studioId;
     private String studioName;
     private String imageData;
-
 }

@@ -12,4 +12,5 @@ public class ImageService {
     public void addImage(Image image) {
         imageRepository.save(image);
     }
+
 }

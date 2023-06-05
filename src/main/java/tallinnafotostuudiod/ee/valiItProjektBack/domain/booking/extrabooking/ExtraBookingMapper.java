@@ -16,4 +16,5 @@ public interface ExtraBookingMapper {
     ExtraBookingDto toDto(ExtraBooking extraBooking);
 
  List <ExtraBookingDto> toDtos(List <ExtraBooking> extraBookings);
+
 }

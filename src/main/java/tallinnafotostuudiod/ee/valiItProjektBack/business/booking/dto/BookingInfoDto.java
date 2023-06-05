@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import tallinnafotostuudiod.ee.valiItProjektBack.business.extra.dto.ExtraBookingDto;
-import tallinnafotostuudiod.ee.valiItProjektBack.business.extra.dto.StudioExtraDto;
 
 import java.io.Serializable;
 import java.time.LocalDate;

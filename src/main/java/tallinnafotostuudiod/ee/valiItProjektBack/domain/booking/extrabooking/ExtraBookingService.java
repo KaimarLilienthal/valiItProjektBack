@@ -18,4 +18,5 @@ public class ExtraBookingService {
     public List<ExtraBooking> findExtraBookings(Integer bookingId) {
        return extraBookingRepository.findExtraBookingsBy(bookingId);
     }
+
 }

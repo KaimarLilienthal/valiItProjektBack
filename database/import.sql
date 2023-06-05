@@ -16,27 +16,15 @@ INSERT INTO public.district (id, name) VALUES (DEFAULT, 'Nõmme');
 INSERT INTO public.district (id, name) VALUES (DEFAULT, 'Pirita');
 INSERT INTO public.district (id, name) VALUES (DEFAULT, 'Põhja-Tallinn');
 
-INSERT INTO public.extra (id, name) VALUES (DEFAULT, 'valgustus');
-INSERT INTO public.extra (id, name) VALUES (DEFAULT, 'mänguasjad');
-INSERT INTO public.extra (id, name) VALUES (DEFAULT, 'riided');
-INSERT INTO public.extra (id, name) VALUES (DEFAULT, 'kingad');
-INSERT INTO public.extra (id, name) VALUES (DEFAULT, 'ventilaator');
-
-
-INSERT INTO public.customer (id, name, phone, email) VALUES (DEFAULT, 'Jyri', '53535', 'jyri@gmail.com');
-
-
-
-INSERT INTO public.address (id, street, longtitude, latitude) VALUES (DEFAULT, 'Tulbi põik 4', null, null);
-
-INSERT INTO public.studio (id, owner_user_id, name, url, hour_price, status, image_id, address_id, district_id)
-VALUES (DEFAULT, 2, 'Tulbi Ateljee', 'www.tulbi.ee', 35, 'A', null, 1, 2);
-
-INSERT INTO public.studio_extra (id, studio_id, extra_id, price) VALUES (DEFAULT, 1, 1, 13);
-INSERT INTO public.studio_extra (id, studio_id, extra_id, price) VALUES (DEFAULT, 1, 4, 12);
-INSERT INTO public.studio_extra (id, studio_id, extra_id, price) VALUES (DEFAULT, 1, 5, 15);
-
-INSERT INTO public.availability (id, studio_id, start_date, end_date, start_hour, end_hour) VALUES (DEFAULT, 1, '2023-06-01', '2023-06-11', 10, 17);
+INSERT INTO public.extra (id, name) VALUES (DEFAULT, 'Valgustus');
+INSERT INTO public.extra (id, name) VALUES (DEFAULT, 'Lumemasin');
+INSERT INTO public.extra (id, name) VALUES (DEFAULT, 'Ventilaator');
+INSERT INTO public.extra (id, name) VALUES (DEFAULT, 'Taustafoonid');
+INSERT INTO public.extra (id, name) VALUES (DEFAULT, 'Udupuhur');
+INSERT INTO public.extra (id, name) VALUES (DEFAULT, 'Kingad');
+INSERT INTO public.extra (id, name) VALUES (DEFAULT, 'Mänguasjad');
+INSERT INTO public.extra (id, name) VALUES (DEFAULT, 'Riided');
+INSERT INTO public.extra (id, name) VALUES (DEFAULT, 'Softbox');
 
 
 

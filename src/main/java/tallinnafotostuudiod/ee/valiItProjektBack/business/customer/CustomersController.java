@@ -14,7 +14,7 @@ public class CustomersController {
     private CustomersService customersService;
 
     @PostMapping("/customer")
-    public void addCustomerInfo(@RequestParam Integer bookingId, @RequestBody CustomerDto customerDto){
+    public void addCustomerInfo(@RequestParam Integer bookingId, @RequestBody CustomerDto customerDto) {
         customersService.addCustomerInfo(bookingId, customerDto);
     }
 

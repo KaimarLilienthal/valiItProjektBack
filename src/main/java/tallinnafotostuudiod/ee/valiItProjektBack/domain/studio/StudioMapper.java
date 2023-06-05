@@ -1,10 +1,7 @@
 package tallinnafotostuudiod.ee.valiItProjektBack.domain.studio;
 
 import org.mapstruct.*;
-import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioDto;
-import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioDtoBasic;
-import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioGeneralInfo;
-import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.StudioPriceDto;
+import tallinnafotostuudiod.ee.valiItProjektBack.business.studio.dto.*;
 import tallinnafotostuudiod.ee.valiItProjektBack.domain.image.Image;
 import tallinnafotostuudiod.ee.valiItProjektBack.util.ImageUtil;
 
@@ -17,7 +14,6 @@ public interface StudioMapper {
     @Mapping(source = "address.street", target = "address")
     @Mapping(source = "image", target = "imageData", qualifiedByName = "imageToImageData")
     StudioDto toStudioDto(Studio studio);
-
 
     List<StudioDto> toStudioDtos(List<Studio> studios);
 
@@ -58,8 +54,8 @@ public interface StudioMapper {
     StudioDtoBasic toAllStudioDto(Studio studio);
 
     List<StudioDtoBasic> toAllStudioDtos(List<Studio> studios);
-    StudioPriceDto toStudioPriceDto(Studio studio);
 
+    StudioPriceDto toStudioPriceDto(Studio studio);
 
     @Named("imageToImageData")
     static String imageToImageData(Image image) {
@@ -76,6 +72,7 @@ public interface StudioMapper {
         }
         return new Image(ImageUtil.base64ImageDataToByteArray(imageData));
     }
+
 }
 
 

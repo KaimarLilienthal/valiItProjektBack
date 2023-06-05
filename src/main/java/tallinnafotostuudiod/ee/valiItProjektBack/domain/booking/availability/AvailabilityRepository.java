@@ -10,14 +10,6 @@ public interface AvailabilityRepository extends JpaRepository<Availability, Inte
     @Query("select (count(a) > 0) from Availability a where a.studio.id = ?1 and a.startDate <= ?2 and a.endDate >= ?2")
     boolean existsByStudio_IdAndStartDateAndEndDate(Integer id, LocalDate startDate, LocalDate endDate);
 
-
-
-
-
-
-
-
-
     @Query("select a from Availability a where a.studio.id = ?1")
     Availability findByStudioId();
 
@@ -26,12 +18,5 @@ public interface AvailabilityRepository extends JpaRepository<Availability, Inte
 
     @Query("select a from Availability a where a.studio.id = ?1 and a.startDate <= ?2 and a.endDate >= ?3")
     Availability findAvailabilityBy(Integer studioId, LocalDate startDate, LocalDate endDate);
-
-
-
-
-
-
-
 
 }

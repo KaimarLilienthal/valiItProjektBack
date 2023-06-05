@@ -21,8 +21,8 @@ public class BookingService {
     return booking;
   }
 
-
   public List<Booking> getBookingsBy(Integer studioId, LocalDate selectedDate) {
    return bookingRepository.findBookingsBy(studioId, selectedDate);
   }
+
 }

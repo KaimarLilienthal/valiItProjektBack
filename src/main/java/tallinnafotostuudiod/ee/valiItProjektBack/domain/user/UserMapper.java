@@ -11,7 +11,6 @@ public interface UserMapper {
     @Mapping(source = "role.name", target = "roleName")
     LoginResponse toLoginResponse(User user);
 
-
     @Mapping(constant = "A", target = "status")
     User toUser(NewUser newUser);
 

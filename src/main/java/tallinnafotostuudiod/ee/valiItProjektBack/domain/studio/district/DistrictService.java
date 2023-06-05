@@ -20,4 +20,5 @@ public class DistrictService {
         List<District> districts = districtRepository.findAll();
         return districts;
     }
+
 }

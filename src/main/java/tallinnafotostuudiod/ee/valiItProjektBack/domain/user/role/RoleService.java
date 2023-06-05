@@ -15,4 +15,5 @@ public class RoleService {
         Role role = roleRepository.findById(USER_ROLE_ID_STUDIO).get();
         return role;
     }
+
 }

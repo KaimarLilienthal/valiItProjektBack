@@ -15,10 +15,10 @@ public class HourService {
         hourRepository.saveAll(hours);
     }
 
-
     public List<Hour> getBookingHoursBy(Integer bookingId) {
         List<Hour> hours = hourRepository.findHoursBy(bookingId);
         return hours;
     }
+
 }
 

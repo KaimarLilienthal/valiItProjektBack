@@ -15,19 +15,17 @@ public class CustomersService {
     private CustomerMapper customerMapper;
 
     @Resource
-    private CustomerService customerService;
+    private BookingService bookingService;
 
     @Resource
-    private BookingService bookingService;
-    public void addCustomerInfo(Integer bookingId, CustomerDto customerDto) {
-        // todo: teen uue
+    private CustomerService customerService;
 
+    public void addCustomerInfo(Integer bookingId, CustomerDto customerDto) {
         Customer customer = customerMapper.toEntity(customerDto);
         customerService.addCustomer(customer);
-
         Booking booking = bookingService.getBookingInformation(bookingId);
         booking.setCustomer(customer);
         bookingService.addBooking(booking);
-
     }
+
 }

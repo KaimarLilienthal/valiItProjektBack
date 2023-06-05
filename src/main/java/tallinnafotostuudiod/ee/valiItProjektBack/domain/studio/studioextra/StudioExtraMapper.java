@@ -9,7 +9,6 @@ import java.util.List;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface StudioExtraMapper {
 
-
   @Mapping(source = "extra.id", target = "extraId")
   @Mapping(source = "extra.name", target = "extraName")
   @Mapping(source = "price", target = "extraPrice")
@@ -18,6 +17,5 @@ public interface StudioExtraMapper {
   List<StudioExtraDto> toExtrasDto(List<StudioExtra> studioExtras);
 
   StudioExtra toStudioExtraEntity(StudioExtraSimpleDto studioExtraSimpleDto);
-
 
 }

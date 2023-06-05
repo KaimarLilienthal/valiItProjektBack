@@ -9,6 +9,4 @@ public interface HourRepository extends JpaRepository<Hour, Integer> {
     @Query("select h from Hour h where h.booking.id = ?1 order by h.start")
     List<Hour> findHoursBy(Integer bookingId);
 
-
-
 }
