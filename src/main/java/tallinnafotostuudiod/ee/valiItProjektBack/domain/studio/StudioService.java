@@ -35,7 +35,7 @@ public class StudioService {
 
     public List<Studio> findAllAreaStudios(Integer districtId) {
 //        List<Studio> studio = studioRepository.findStudiosBy(districtId);
-        List<Studio> studios = studioRepository.findByStatusAndId("A", districtId);
+        List<Studio> studios = studioRepository.findAllStudiosBy(districtId, "A");
         return studios;
     }
 
